@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
 import { FormInput } from "../FormInput";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
 
 export function LoginForm() {
   const { register, handleSubmit } = useForm();
+  const { userLogin } = useContext(UserContext);
 
   function submit(formData) {
-    console.log(formData);
+    userLogin(formData);
   }
 
   return (

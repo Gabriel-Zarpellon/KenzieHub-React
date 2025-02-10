@@ -1,13 +1,16 @@
 import { useForm } from "react-hook-form";
 import { FormInput } from "../FormInput";
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
 
 export function RegisterForm() {
   const { register, handleSubmit } = useForm();
+  const { userRegister } = useContext(UserContext);
 
   function submit(formData) {
     if (formData.password == formData.password2) {
-      console.log(formData);
+      delete formData["password2"];
+      userRegister(formData);
     } else {
       alert("As senhas não correspondem!");
     }
