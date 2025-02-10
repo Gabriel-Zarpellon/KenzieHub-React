@@ -1,16 +1,12 @@
+import { useContext } from "react";
 import { TechCard } from "./TechCard";
+import { UserContext } from "../../providers/UserContext";
 
 export function TechList() {
-  const techList = [
-    {
-      id: 1,
-      title: "React",
-      status: "Avançado",
-    },
-  ];
+  const { userTechs } = useContext(UserContext);
   return (
     <ul>
-      {techList.map((tech) => (
+      {userTechs.map((tech) => (
         <TechCard key={tech.id} tech={tech} />
       ))}
     </ul>

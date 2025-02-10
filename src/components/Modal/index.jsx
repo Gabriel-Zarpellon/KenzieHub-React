@@ -1,4 +1,6 @@
 import { IoClose } from "react-icons/io5";
+import { useOutclickModal } from "../../hooks/useOutclickModal";
+import { useKeydownModal } from "../../hooks/useKeydownModal";
 
 export function Modal({ children, title, setIsOpen, value }) {
   let modalRef = useOutclickModal(() => {
@@ -18,6 +20,7 @@ export function Modal({ children, title, setIsOpen, value }) {
             <IoClose size={20} />
           </button>
         </div>
+        <div>{children}</div>
       </div>
     </div>
   );

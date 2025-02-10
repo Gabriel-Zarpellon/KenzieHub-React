@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Modal } from "../Modal";
+import { TechContext } from "../../providers/TechContext";
+import { useForm } from "react-hook-form";
+import { FormInput } from "../FormInput";
 
 export function EditTechModal() {
+  const { setIsEditTechOpen, editTech, updateTech } = useContext(TechContext);
   const { register, handleSubmit } = useForm({
     values: {
       title: editTech.title,
@@ -9,10 +14,15 @@ export function EditTechModal() {
   });
 
   function submit(formData) {
-    console.log(formData);
+    updateTech(formData);
   }
+
   return (
-    <Modal title="Tecnologia Detalhes" setIsOpen={} value={false}>
+    <Modal
+      title="Tecnologia Detalhes"
+      setIsOpen={setIsEditTechOpen}
+      value={false}
+    >
       <form onSubmit={handleSubmit(submit)}>
         <FormInput
           label="Nome"

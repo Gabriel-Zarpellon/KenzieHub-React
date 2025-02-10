@@ -1,11 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Logo from "../../assets/Logo.png";
 import { TechList } from "../../components/TechList";
 import { IoMdAdd } from "react-icons/io";
 import { UserContext } from "../../providers/UserContext";
+import { AddTechModal } from "../../components/AddTechModal";
+import { TechContext } from "../../providers/TechContext";
+import { EditTechModal } from "../../components/EditTechModal";
 
 export function DashboardPage() {
   const { user, userLogout } = useContext(UserContext);
+  const { isAddTechOpen, setIsAddTechOpen, isEditTechOpen } =
+    useContext(TechContext);
+
   return (
     <>
       <header>
@@ -23,11 +29,14 @@ export function DashboardPage() {
       <section>
         <div>
           <h2>Tecnologias</h2>
-          <button>
+          <button onClick={() => setIsAddTechOpen(true)}>
             <IoMdAdd size={20} />
           </button>
         </div>
         <TechList />
+
+        {isAddTechOpen ? <AddTechModal /> : null}
+        {isEditTechOpen ? <EditTechModal /> : null}
       </section>
     </>
   );

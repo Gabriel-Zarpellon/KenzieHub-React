@@ -6,6 +6,7 @@ export const UserContext = createContext({});
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState();
+  const [userTechs, setUserTechs] = useState([]);
 
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ export function UserProvider({ children }) {
             },
           });
           setUser(data);
+          setUserTechs(data.techs);
           navigate("/dashboard");
         } catch (error) {
           console.log(error);
@@ -60,7 +62,16 @@ export function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={{ userLogin, userRegister, user, userLogout }}>
+    <UserContext.Provider
+      value={{
+        userLogin,
+        userRegister,
+        user,
+        userLogout,
+        userTechs,
+        setUserTechs,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
