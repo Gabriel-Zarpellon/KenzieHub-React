@@ -1,0 +1,38 @@
+import { useForm } from "react-hook-form";
+import { FormInput } from "../FormInput";
+import { Modal } from "../Modal";
+
+export function AddTechModal() {
+  const { register, handleSubmit } = useForm();
+
+  function submit(formData) {
+    console.log(formData);
+  }
+
+  return (
+    <Modal title="Cadastrar Tecnologia" setIsOpen={} value={false}>
+      <form onSubmit={handleSubmit(submit)}>
+        <FormInput
+          label="Nome"
+          name="title"
+          type="text"
+          placeholder="Insira o nome da tecnologia"
+          register={register}
+        />
+        <div>
+          <label htmlFor="status">Selecionar status</label>
+          <select
+            name="status"
+            defaultValue={"Iniciante"}
+            {...register("status")}
+          >
+            <option value="Iniciante">Iniciante</option>
+            <option value="Intermediário">Intermediário</option>
+            <option value="Avançado">Avançado</option>
+          </select>
+        </div>
+        <button type="submit">Cadastrar tecnologia</button>
+      </form>
+    </Modal>
+  );
+}
