@@ -7,9 +7,9 @@ export function TechCard({ tech }) {
   const { deleteTech, setIsEditTechOpen, setEditTech } = useContext(TechContext);
   return (
     <li>
-      <h3>{tech.title}</h3>
+      <h3 className="title three">{tech.title}</h3>
       <div>
-        <p>{tech.status}</p>
+        <p className="paragraph">{tech.status}</p>
         <button
           onClick={() => {
             setEditTech(tech);

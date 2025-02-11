@@ -15,20 +15,20 @@ export function DashboardPage() {
   return (
     <>
       <header>
-        <div>
+        <div className="container">
           <img src={Logo} alt="KenzieHub Logo" />
           <button onClick={() => userLogout()}>Sair</button>
         </div>
       </header>
       <section>
-        <div>
-          <h1>{user?.name}</h1>
-          <p>{user?.course_module}</p>
+        <div className="container">
+          <h1 className="title one">{user?.name}</h1>
+          <p className="paragraph">{user?.course_module}</p>
         </div>
       </section>
       <section>
-        <div>
-          <h2>Tecnologias</h2>
+        <div className="container">
+          <h2 className="title two">Tecnologias</h2>
           <button onClick={() => setIsAddTechOpen(true)}>
             <IoMdAdd size={20} />
           </button>

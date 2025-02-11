@@ -1,7 +1,9 @@
 export function FormInput({ label, type, name, placeholder, register }) {
   return (
     <div>
-      <label htmlFor={name}>{label}</label>
+      <label className="label" htmlFor={name}>
+        {label}
+      </label>
       <input
         type={type}
         name={name}

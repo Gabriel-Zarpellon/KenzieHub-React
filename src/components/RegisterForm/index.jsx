@@ -61,7 +61,10 @@ export function RegisterForm() {
         register={register}
       />
       <div>
-        <label htmlFor="course_module"> Selecionar Módulo</label>
+        <label className="label" htmlFor="course_module">
+          {" "}
+          Selecionar Módulo
+        </label>
         <select
           name="course_module"
           defaultValue={"Primeiro módulo (Introdução ao Frontend)"}

@@ -12,10 +12,10 @@ export function RegisterPage() {
             <button>Voltar</button>
           </Link>
         </div>
-        <div>
+        <div className="form">
           <div>
-            <h1>Crie sua conta</h1>
-            <p>Rapido e grátis, vamos nessa</p>
+            <h1 className="title one">Crie sua conta</h1>
+            <p className="paragraph">Rapido e grátis, vamos nessa</p>
           </div>
           <RegisterForm />
         </div>

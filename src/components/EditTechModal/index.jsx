@@ -32,7 +32,9 @@ export function EditTechModal() {
           register={register}
         />
         <div>
-          <label htmlFor="status">Selecionar status</label>
+          <label className="label" htmlFor="status">
+            Selecionar status
+          </label>
           <select
             name="status"
             defaultValue={"Iniciante"}

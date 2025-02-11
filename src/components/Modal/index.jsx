@@ -15,7 +15,7 @@ export function Modal({ children, title, setIsOpen, value }) {
     <div role="dialog">
       <div ref={modalRef}>
         <div>
-          <h3>{title}</h3>
+          <h3 className="title three">{title}</h3>
           <button ref={buttonRef} onClick={() => setIsOpen(value)}>
             <IoClose size={20} />
           </button>
