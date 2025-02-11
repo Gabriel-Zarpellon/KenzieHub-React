@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import { LoginForm } from "../../components/LoginForm";
+import styles from "./style.module.scss";
 
 export function LoginPage() {
   return (
     <section>
-      <div>
+      <div className={styles.loginBox}>
         <div>
           <img src={Logo} alt="KenzieHub Logo" />
         </div>

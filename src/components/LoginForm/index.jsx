@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { FormInput } from "../FormInput";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
+import styles from "./style.module.scss";
 
 export function LoginForm() {
   const { register, handleSubmit } = useForm();
@@ -28,7 +29,7 @@ export function LoginForm() {
         register={register}
       />
 
-      <button type="submit">Entrar</button>
+      <button className={styles.loginBtn} type="submit">Entrar</button>
     </form>
   );
 }

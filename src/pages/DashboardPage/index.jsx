@@ -6,6 +6,7 @@ import { UserContext } from "../../providers/UserContext";
 import { AddTechModal } from "../../components/AddTechModal";
 import { TechContext } from "../../providers/TechContext";
 import { EditTechModal } from "../../components/EditTechModal";
+import styles from "./style.module.scss";
 
 export function DashboardPage() {
   const { user, userLogout } = useContext(UserContext);
@@ -14,30 +15,34 @@ export function DashboardPage() {
 
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <div className="container">
           <img src={Logo} alt="KenzieHub Logo" />
           <button onClick={() => userLogout()}>Sair</button>
         </div>
       </header>
-      <section>
-        <div className="container">
-          <h1 className="title one">{user?.name}</h1>
-          <p className="paragraph">{user?.course_module}</p>
-        </div>
-      </section>
-      <section>
-        <div className="container">
-          <h2 className="title two">Tecnologias</h2>
-          <button onClick={() => setIsAddTechOpen(true)}>
-            <IoMdAdd size={20} />
-          </button>
-        </div>
-        <TechList />
+      <main>
+        <section className={styles.userSection}>
+          <div className="container">
+            <h1 className="title one">Olá, {user?.name}</h1>
+            <p className="paragraph">{user?.course_module}</p>
+          </div>
+        </section>
+        <section className={styles.techSection}>
+          <div className="container">
+            <div>
+              <h2 className="title two">Tecnologias</h2>
+              <button onClick={() => setIsAddTechOpen(true)}>
+                <IoMdAdd size={20} />
+              </button>
+            </div>
+            <TechList />
 
-        {isAddTechOpen ? <AddTechModal /> : null}
-        {isEditTechOpen ? <EditTechModal /> : null}
-      </section>
+            {isAddTechOpen ? <AddTechModal /> : null}
+            {isEditTechOpen ? <EditTechModal /> : null}
+          </div>
+        </section>
+      </main>
     </>
   );
 }

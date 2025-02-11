@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import { RegisterForm } from "../../components/RegisterForm";
+import styles from "./style.module.scss";
 
 export function RegisterPage() {
   return (
     <section>
-      <div>
+      <div className={styles.registerBox}>
         <div>
           <img src={Logo} alt="KenzieHub Logo" />
-          <Link to="/">
-            <button>Voltar</button>
-          </Link>
+          <Link to="/">Voltar</Link>
         </div>
         <div className="form">
           <div>

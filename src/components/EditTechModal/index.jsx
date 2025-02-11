@@ -3,6 +3,7 @@ import { Modal } from "../Modal";
 import { TechContext } from "../../providers/TechContext";
 import { useForm } from "react-hook-form";
 import { FormInput } from "../FormInput";
+import styles from "./style.module.scss";
 
 export function EditTechModal() {
   const { setIsEditTechOpen, editTech, updateTech } = useContext(TechContext);
@@ -23,7 +24,7 @@ export function EditTechModal() {
       setIsOpen={setIsEditTechOpen}
       value={false}
     >
-      <form onSubmit={handleSubmit(submit)}>
+      <form className={styles.editForm} onSubmit={handleSubmit(submit)}>
         <FormInput
           label="Nome"
           name="title"

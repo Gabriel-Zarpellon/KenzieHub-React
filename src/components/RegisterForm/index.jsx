@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { FormInput } from "../FormInput";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
+import styles from "./style.module.scss";
 
 export function RegisterForm() {
   const { register, handleSubmit } = useForm();
@@ -85,7 +86,9 @@ export function RegisterForm() {
         </select>
       </div>
 
-      <button type="submit">Cadastrar</button>
+      <button className={styles.registerBtn} type="submit">
+        Cadastrar
+      </button>
     </form>
   );
 }
