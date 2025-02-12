@@ -20,7 +20,7 @@ export function FormPasswordInput({ label, name, placeholder, register }) {
           required
         />
         <div className={styles.eyeBox}>
-          <button onClick={() => setShowPassword(!showPassword)}>
+          <button type="button" onClick={() => setShowPassword(!showPassword)}>
             {showPassword ? <IoEyeOff size={16} /> : <IoEye size={16} />}
           </button>
         </div>
