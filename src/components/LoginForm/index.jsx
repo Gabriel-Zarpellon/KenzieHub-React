@@ -3,6 +3,7 @@ import { FormInput } from "../FormInput";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 import styles from "./style.module.scss";
+import { FormPasswordInput } from "../FormPasswordInput";
 
 export function LoginForm() {
   const { register, handleSubmit } = useForm();
@@ -21,14 +22,12 @@ export function LoginForm() {
         placeholder="Digite seu e-mail"
         register={register}
       />
-      <FormInput
+      <FormPasswordInput
         label="Senha"
-        type="password"
         name="password"
         placeholder="Digite sua senha"
         register={register}
       />
-
       <button className={styles.loginBtn} type="submit">Entrar</button>
     </form>
   );

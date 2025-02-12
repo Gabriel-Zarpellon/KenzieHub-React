@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 import styles from "./style.module.scss";
 import { toast } from "react-toastify";
+import { FormPasswordInput } from "../FormPasswordInput";
 
 export function RegisterForm() {
   const { register, handleSubmit } = useForm();
@@ -34,16 +35,14 @@ export function RegisterForm() {
         placeholder="Digite aqui seu email"
         register={register}
       />
-      <FormInput
+      <FormPasswordInput
         label="Senha"
-        type="password"
         name="password"
         placeholder="Digite aqui sua senha"
         register={register}
       />
-      <FormInput
+      <FormPasswordInput
         label="Confirmar Senha"
-        type="password"
         name="password2"
         placeholder="Digite novamente sua senha"
         register={register}
