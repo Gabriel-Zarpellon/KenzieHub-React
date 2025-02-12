@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserContext";
 import { api } from "../services/api";
+import { toast } from "react-toastify";
 
 export const TechContext = createContext({});
 
@@ -21,11 +22,11 @@ export function TechProvider({ children }) {
         },
       });
       setUserTechs([...userTechs, data]);
-      alert("Tecnologia adicionada");
+      toast.success("Tecnologia adicionada!");
       setIsAddTechOpen(false);
     } catch (error) {
-      console.log(error);
-      alert(error.message);
+      console.log(error.response.data.message);
+      toast.error("O usuário já possui essa tecnologia cadastrada!");
     }
   }
 
@@ -36,7 +37,8 @@ export function TechProvider({ children }) {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Tecnologia excluída");
+      setUserTechs(userTechs.filter((tech) => tech.id != tech_id));
+      toast.success("Tecnologia excluída!");
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +54,7 @@ export function TechProvider({ children }) {
       setUserTechs(
         userTechs.map((tech) => (tech.id == editTech.id ? data : tech))
       );
-      alert("Tecnologia atualizada");
+      toast.success("Tecnologia atualizada!");
       setIsEditTechOpen(false);
     } catch (error) {
       console.log(error);

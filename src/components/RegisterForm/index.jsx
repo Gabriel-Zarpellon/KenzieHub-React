@@ -3,6 +3,7 @@ import { FormInput } from "../FormInput";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 import styles from "./style.module.scss";
+import { toast } from "react-toastify";
 
 export function RegisterForm() {
   const { register, handleSubmit } = useForm();
@@ -13,7 +14,7 @@ export function RegisterForm() {
       delete formData["password2"];
       userRegister(formData);
     } else {
-      alert("As senhas não correspondem!");
+      toast.error("As senhas não correspondem!");
     }
   }
 

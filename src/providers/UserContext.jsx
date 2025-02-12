@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 export const UserContext = createContext({});
 
@@ -39,7 +40,13 @@ export function UserProvider({ children }) {
       alert("Cadastro efetuado com sucesso!");
       navigate("/");
     } catch (error) {
-      console.log(error.message[0]);
+      console.log(error);
+
+      if (Array.isArray(error.response.data.message)) {
+        toast.error(error.response.data.message[0]);
+      } else {
+        toast.error(error.response.data.message);
+      }
     }
   }
 
@@ -51,7 +58,7 @@ export function UserProvider({ children }) {
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
-      alert("E-mail ou senha incorretos!");
+      toast.error("E-mail ou senha incorretos!");
     }
   }
 
@@ -72,6 +79,18 @@ export function UserProvider({ children }) {
         setUserTechs,
       }}
     >
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       {children}
     </UserContext.Provider>
   );

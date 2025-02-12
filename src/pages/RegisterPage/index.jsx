@@ -14,7 +14,7 @@ export function RegisterPage() {
         <div className="form">
           <div>
             <h1 className="title one">Crie sua conta</h1>
-            <p className="paragraph">Rapido e grátis, vamos nessa</p>
+            <p className={`${styles.p} paragraph`}>Rapido e grátis, vamos nessa</p>
           </div>
           <RegisterForm />
         </div>
