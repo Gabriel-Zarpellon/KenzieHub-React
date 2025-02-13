@@ -2,68 +2,87 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserContext";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const TechContext = createContext({});
 
 export function TechProvider({ children }) {
-  const { userTechs, setUserTechs } = useContext(UserContext);
-
   const [isAddTechOpen, setIsAddTechOpen] = useState(false);
   const [isEditTechOpen, setIsEditTechOpen] = useState(false);
   const [editTech, setEditTech] = useState(null);
 
   const token = localStorage.getItem("@TOKEN");
 
-  async function addTech(formData) {
-    try {
-      const { data } = await api.post("/users/techs", formData, {
+  const { data: userTechs } = useQuery({
+    queryKey: ["techs"],
+    queryFn: async () => {
+      const { data } = await api.get("/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUserTechs([...userTechs, data]);
+      return data.techs;
+    },
+  });
+
+  const client = useQueryClient();
+
+  function revalidate() {
+    client.invalidateQueries({ queryKey: ["techs"] });
+  }
+
+  const addTech = useMutation({
+    mutationFn: async function (formData) {
+      return await api.post("/users/techs", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+    onSuccess: () => {
+      revalidate();
       toast.success("Tecnologia adicionada!");
       setIsAddTechOpen(false);
-    } catch (error) {
-      console.log(error.response.data.message);
-      toast.error("O usuário já possui essa tecnologia cadastrada!");
-    }
-  }
-
-  async function deleteTech(tech_id) {
-    try {
-      await api.delete(`/users/techs/${tech_id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setUserTechs(userTechs.filter((tech) => tech.id != tech_id));
-      toast.success("Tecnologia excluída!");
-    } catch (error) {
+    },
+    onError: (error) => {
       console.log(error);
-    }
-  }
+      toast.error("O usuário já possui essa tecnologia cadastrada!");
+    },
+  });
 
-  async function updateTech(formData) {
-    try {
-      const { data } = await api.put(`/users/techs/${editTech.id}`, formData, {
+  const deleteTech = useMutation({
+    mutationFn: async function (tech_id) {
+      return await api.delete(`/users/techs/${tech_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUserTechs(
-        userTechs.map((tech) => (tech.id == editTech.id ? data : tech))
-      );
+    },
+    onSuccess: () => {
+      revalidate();
+      toast.success("Tecnologia excluída!");
+    },
+  });
+
+  const updateTech = useMutation({
+    mutationFn: async function (formData) {
+      return await api.put(`/users/techs/${editTech.id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+    onSuccess: () => {
+      revalidate();
       toast.success("Tecnologia atualizada!");
       setIsEditTechOpen(false);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+    },
+  });
 
   return (
     <TechContext.Provider
       value={{
+        userTechs,
         isAddTechOpen,
         setIsAddTechOpen,
         addTech,

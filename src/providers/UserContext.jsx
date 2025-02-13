@@ -7,7 +7,7 @@ export const UserContext = createContext({});
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState();
-  const [userTechs, setUserTechs] = useState([]);
+  //const [userTechs, setUserTechs] = useState([]);
 
   const navigate = useNavigate();
 
@@ -23,7 +23,6 @@ export function UserProvider({ children }) {
             },
           });
           setUser(data);
-          setUserTechs(data.techs);
           navigate("/dashboard");
         } catch (error) {
           console.log(error);
@@ -75,8 +74,6 @@ export function UserProvider({ children }) {
         userRegister,
         user,
         userLogout,
-        userTechs,
-        setUserTechs,
       }}
     >
       <ToastContainer

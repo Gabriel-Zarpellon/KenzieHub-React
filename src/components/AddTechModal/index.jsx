@@ -10,7 +10,7 @@ export function AddTechModal() {
   const { setIsAddTechOpen, addTech } = useContext(TechContext);
 
   function submit(formData) {
-    addTech(formData);
+    addTech.mutate(formData);
   }
 
   return (

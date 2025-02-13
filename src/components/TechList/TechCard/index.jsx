@@ -21,7 +21,7 @@ export function TechCard({ tech }) {
           >
             <ImPencil size={16} />
           </button>
-          <button onClick={() => deleteTech(tech.id)}>
+          <button onClick={() => deleteTech.mutate(tech.id)}>
             <FaRegTrashAlt size={16} />
           </button>
         </div>

@@ -15,7 +15,7 @@ export function EditTechModal() {
   });
 
   function submit(formData) {
-    updateTech(formData);
+    updateTech.mutate(formData);
   }
 
   return (
